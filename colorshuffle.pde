@@ -14,7 +14,7 @@ void colorShuffle(int n) {
     
   if (done==false) {
     for (int i=0;i<colorMap.length;i++) {
-      if (cDist(old_color,colorMap[i][0])<5) {
+      if (cDist(old_color,colorMap[i][0])<40) {
         pixels[n]=colorMap[i][1];
         changed[n]=1;
         done = true;
@@ -52,7 +52,8 @@ float cDist(color c1, color c2) {
 void setup() {
   //size(630,433);
   //size(770,513);
-  size(885,497);
+  //size(885,497);
+  size(510,330);
   colorMode(RGB,255,255,255);
   changed = new int[width*height];
   for (int i=0;i<width*height;i++) {
@@ -66,7 +67,8 @@ void setup() {
   PImage img;
   //img = loadImage("sundown.jpg");
   //img = loadImage("flag.png");
-  img = loadImage("bugs.jpg");
+  //img = loadImage("bugs.jpg");
+  img = loadImage("rings.jpg");
   image(img,0,0);
   
   for (int n=0;n<width*height;n++) {
