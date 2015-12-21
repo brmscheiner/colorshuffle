@@ -1,3 +1,5 @@
+int[] changed;
+
 void colorShuffle() {
   int n_ind,m_ind;
   float old_n_dist,old_m_dist,new_n_dist,new_m_dist;
@@ -13,11 +15,15 @@ void colorShuffle() {
   new_m_dist = cDist(m,pixels[n_ind-1])+cDist(m,pixels[n_ind+1]);
   if ((old_n_dist+old_m_dist)<(new_n_dist+new_m_dist)) {
     for (int i=0;i<pixels.length;i+=1) {
-      if (cDist(n,pixels[i])<5) {
-        pixels[i]=m;
-      }
-      if (cDist(m,pixels[i])<5) {
-        pixels[i]=n;
+      if (changed[i]==0) {
+        if (cDist(n,pixels[i])<5) {
+          pixels[i]=m;
+          changed[i]=1;
+        }
+        if (cDist(m,pixels[i])<5) {
+          pixels[i]=n;
+          changed[i]=1;
+        }
       }
     }
   }
@@ -43,6 +49,10 @@ void setup() {
   //size(770,513);
   size(885,497);
   colorMode(RGB,255,255,255);
+  changed = new int[width*height];
+  for (int i=0;i<width*height;i++) {
+    changed[i]=0;
+  }
   PImage img;
   //img = loadImage("sundown.jpg");
   //img = loadImage("flag.png");
